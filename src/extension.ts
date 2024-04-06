@@ -263,7 +263,7 @@ const fillerLogic = (e: Uri) => {
 			const firstLetterToUpperCase = fileNameForFiller.charAt(0).toUpperCase();
 			const fileName = firstLetterToUpperCase + fileNameForFiller.slice(1, -6);
 			const snippet = new SnippetString(`// SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.23;
+pragma solidity ^0.8.25;
 
 import {Test} from "forge-std/Test.sol";
 import {StdInvariant} from "forge-std/StdInvariant.sol";
@@ -291,7 +291,7 @@ contract ${fileName} is StdInvariant, Test {
 			const firstLetterToUpperCase = fileNameForFiller.charAt(0).toUpperCase();
 			const fileName = firstLetterToUpperCase + fileNameForFiller.slice(1, -4);
 			const snippet = new SnippetString(`// SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.23;
+pragma solidity ^0.8.25;
 
 contract ${fileName} {
 		$1
@@ -541,7 +541,7 @@ export function activate(context: ExtensionContext) {
 	let disposable2 = commands.registerCommand('sol-audit-convert', async () => {
 		const template = (fileName: string, importStatements?: string[]) => {
 			return `// SPDX-License-Identifier: UNLICENSED
-		pragma solidity 0.8.23;
+		pragma solidity ^0.8.25;
 		
 		${importStatements?.join('\n')}
 		
