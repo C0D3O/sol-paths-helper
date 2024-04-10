@@ -286,8 +286,29 @@ contract ${fileName} is StdInvariant, Test {
 }`);
 
 			!window.activeTextEditor?.document.getText() && window.activeTextEditor?.insertSnippet(snippet);
-			// for regular files
+			// for script files
+		} else if (fileNameForFiller?.includes('.s.')) {
+			const firstLetterToUpperCase = fileNameForFiller.charAt(0).toUpperCase();
+			const fileName = firstLetterToUpperCase + fileNameForFiller.slice(1, -6);
+			const snippet = new SnippetString(`// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.25;
+
+import {Script, console2 as console} from "forge-std/Script.sol";
+
+contract ${fileName} is Script {
+	$1
+
+	function run() external {
+		$2
+	}
+
+	
+}`);
+
+			!window.activeTextEditor?.document.getText() && window.activeTextEditor?.insertSnippet(snippet);
 		} else {
+			// for regular files
+
 			const firstLetterToUpperCase = fileNameForFiller.charAt(0).toUpperCase();
 			const fileName = firstLetterToUpperCase + fileNameForFiller.slice(1, -4);
 			const snippet = new SnippetString(`// SPDX-License-Identifier: UNLICENSED
